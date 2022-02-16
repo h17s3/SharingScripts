@@ -1,5 +1,5 @@
+--Made by H17S3#2734
 
--- Made by H17S3
 local ScreenGui = Instance.new("ScreenGui")
 local M = Instance.new("Frame")
 local Name = Instance.new("TextLabel")
@@ -8,6 +8,9 @@ local Close = Instance.new("TextButton")
 local Fling = Instance.new("TextButton")
 local View = Instance.new("TextButton")
 local TFM = Instance.new("TextButton")
+local plrsName = Instance.new("TextBox")
+
+--Properties:
 
 ScreenGui.Parent = game.CoreGui
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -23,7 +26,7 @@ Name.Name = "Name"
 Name.Parent = M
 Name.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Name.BackgroundTransparency = 1.000
-Name.Position = UDim2.new(0.20527859, 0, 0.0823529437, 0)
+Name.Position = UDim2.new(0.20527859, 0, 0.0411764719, 0)
 Name.Size = UDim2.new(0, 200, 0, 37)
 Name.Font = Enum.Font.Nunito
 Name.Text = "H17S3"
@@ -71,7 +74,7 @@ View.Font = Enum.Font.Nunito
 View.Text = "View"
 View.TextColor3 = Color3.fromRGB(255, 255, 255)
 View.TextSize = 14.000
-
+local FlingPart = nil
 TFM.Name = "TFM"
 TFM.Parent = M
 TFM.BackgroundColor3 = Color3.fromRGB(56, 56, 56)
@@ -84,6 +87,26 @@ TFM.Text = "Toggle Fling mode"
 TFM.TextColor3 = Color3.fromRGB(255, 255, 255)
 TFM.TextSize = 14.000
 
+plrsName.Name = "plrsName"
+plrsName.Parent = M
+plrsName.BackgroundColor3 = Color3.fromRGB(56, 56, 56)
+plrsName.BackgroundTransparency = 0.650
+plrsName.BorderColor3 = Color3.fromRGB(56, 56, 56)
+plrsName.Position = UDim2.new(0.20527859, 0, 0.300000012, 0)
+plrsName.Size = UDim2.new(0, 200, 0, 33)
+plrsName.Font = Enum.Font.SourceSans
+plrsName.PlaceholderText = "Target"
+plrsName.Text = ""
+plrsName.TextColor3 = Color3.fromRGB(255, 255, 255)
+plrsName.TextSize = 14.000
+function Sendnotif(v)
+	local StarterGui = game:GetService("StarterGui")
+	StarterGui:SetCore("SendNotification", {
+		Title = "FLING GUI";
+		Text = v
+	})
+end
+Sendnotif("\77\65\68\69\32\66\89\32\72\49\55\83\51\35\50\55\51\52\10")
 Close.MouseButton1Click:Connect(function()
 	ScreenGui:Destroy()
 end)
@@ -159,7 +182,11 @@ Fling.MouseButton1Click:Connect(function()
 			flingtarget = c
 			wait(4)
 			flingtarget = nil
+		else
+			Sendnotif("Player not found!")
 		end
+	else
+		Sendnotif("Click toggle fling mode first!")
 	end
 end)
 local e = false
@@ -213,18 +240,12 @@ function dragify(Frame)
 end
 
 dragify(M)
---Nerdd!!!
-local ned = Name
-
-
-local sine = 0
-local change = 1.5
+sine = 0
+change = 1.5
+ned = Name
 local rs = game:GetService("RunService")
-
-
-
 rs.Heartbeat:Connect(function()
 	sine = sine +change
 	ned.Rotation = 0 - 2 * math.cos(sine / 24)
-	ned.Position = UDim2.new(0.2,0 - 10 * math.cos(sine / 32),0.2,0 - 8 * math.cos(sine / 45))
+	ned.Position = UDim2.new(0.2,0 - 10 * math.cos(sine / 32),0.1,0 - 10 * math.cos(sine / 45))
 end)
