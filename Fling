@@ -1,0 +1,230 @@
+
+-- Made by H17S3
+local ScreenGui = Instance.new("ScreenGui")
+local M = Instance.new("Frame")
+local Name = Instance.new("TextLabel")
+local UICorner = Instance.new("UICorner")
+local Close = Instance.new("TextButton")
+local Fling = Instance.new("TextButton")
+local View = Instance.new("TextButton")
+local TFM = Instance.new("TextButton")
+
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+M.Name = "M"
+M.Parent = ScreenGui
+M.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
+M.BackgroundTransparency = 0.100
+M.Position = UDim2.new(0.323198199, 0, 0.407345593, 0)
+M.Size = UDim2.new(0, 341, 0, 170)
+
+Name.Name = "Name"
+Name.Parent = M
+Name.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Name.BackgroundTransparency = 1.000
+Name.Position = UDim2.new(0.20527859, 0, 0.0823529437, 0)
+Name.Size = UDim2.new(0, 200, 0, 37)
+Name.Font = Enum.Font.Nunito
+Name.Text = "H17S3"
+Name.TextColor3 = Color3.fromRGB(255, 255, 255)
+Name.TextScaled = true
+Name.TextSize = 14.000
+Name.TextWrapped = true
+
+UICorner.CornerRadius = UDim.new(0, 3)
+UICorner.Parent = M
+
+Close.Name = "Close"
+Close.Parent = M
+Close.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
+Close.BorderSizePixel = 0
+Close.Position = UDim2.new(0, 0, -0.0411764719, 0)
+Close.Size = UDim2.new(0, 341, 0, 14)
+Close.Font = Enum.Font.SourceSans
+Close.Text = "Close"
+Close.TextColor3 = Color3.fromRGB(255, 0, 0)
+Close.TextScaled = true
+Close.TextSize = 14.000
+Close.TextWrapped = true
+
+Fling.Name = "Fling"
+Fling.Parent = M
+Fling.BackgroundColor3 = Color3.fromRGB(56, 56, 56)
+Fling.BackgroundTransparency = 0.650
+Fling.BorderColor3 = Color3.fromRGB(132, 132, 132)
+Fling.Position = UDim2.new(0.0439882688, 0, 0.535294116, 0)
+Fling.Size = UDim2.new(0, 127, 0, 35)
+Fling.Font = Enum.Font.Nunito
+Fling.Text = "Fling"
+Fling.TextColor3 = Color3.fromRGB(255, 255, 255)
+Fling.TextSize = 14.000
+
+View.Name = "View"
+View.Parent = M
+View.BackgroundColor3 = Color3.fromRGB(56, 56, 56)
+View.BackgroundTransparency = 0.650
+View.BorderColor3 = Color3.fromRGB(132, 132, 132)
+View.Position = UDim2.new(0.592375398, 0, 0.535294116, 0)
+View.Size = UDim2.new(0, 127, 0, 35)
+View.Font = Enum.Font.Nunito
+View.Text = "View"
+View.TextColor3 = Color3.fromRGB(255, 255, 255)
+View.TextSize = 14.000
+
+TFM.Name = "TFM"
+TFM.Parent = M
+TFM.BackgroundColor3 = Color3.fromRGB(56, 56, 56)
+TFM.BackgroundTransparency = 0.650
+TFM.BorderColor3 = Color3.fromRGB(132, 132, 132)
+TFM.Position = UDim2.new(0.31378299, 0, 0.794117689, 0)
+TFM.Size = UDim2.new(0, 127, 0, 35)
+TFM.Font = Enum.Font.Nunito
+TFM.Text = "Toggle Fling mode"
+TFM.TextColor3 = Color3.fromRGB(255, 255, 255)
+TFM.TextSize = 14.000
+
+Close.MouseButton1Click:Connect(function()
+	ScreenGui:Destroy()
+end)
+local function RemoveSpaces(String)
+	return String:gsub("%s+", "") or String
+end
+
+local function FindPlayer(String)
+	String = RemoveSpaces(String)
+	for _, _Player in pairs(game.Players:GetPlayers()) do
+		if _Player.Name:lower():match('^'.. String:lower()) or _Player.DisplayName:lower():match('^'.. String:lower()) then
+			return _Player
+		end
+	end
+	return nil
+end
+
+local flingtarget = nil
+cdb1 = false
+--//.MouseButton1Click:Connect(function()
+TFM.MouseButton1Click:Connect(function()
+	if not workspace:FindFirstChild("non") then
+		if cdb1 == false then
+			cdb1 = true
+			if game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+				_G.TorsoFling = true
+			else
+				_G.TorsoFling = false
+				_G.Fling = true
+			end
+			_G.ShowReal = true
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/Tescalus/Pendulum-Hubs-Source/main/NetlessReanimV2(ThanksProductionTakeOne%20%233330%20for%20help).lua"))()
+			task.wait()
+			local Fling = game.Players.LocalPlayer.Character[game.Players.LocalPlayer.Name]:FindFirstChild("LowerTorso") or game.Players.LocalPlayer.Character[game.Players.LocalPlayer.Name].HumanoidRootPart
+			Fling.Transparency = 1
+			Fling.BodyAngularVelocity.AngularVelocity = Vector3.new(999999999999999999999999999999999999,999999999999999999999999999999999999,999999999999999999999999999999999999)
+
+			local mouse = game.Players.LocalPlayer:GetMouse()
+			--game["Run Service"].Heartbeat:Connect(function(delta)
+			--    Fling.CFrame = CFrame.new(mouse.hit.p)
+			--end)
+			local attackingwithhrp = true
+
+
+
+			mouse.Button1Up:Connect(function()
+				attackingwithhrp = false
+			end)
+			local eys = Instance.new("SelectionBox")
+			eys.Adornee = Fling
+			eys.Name = "yes"
+			eys.Color3 = Color3.new(1, 0, 0.0156863)
+			eys.LineThickness = 0.1
+			eys.Parent = Fling
+			game["Run Service"].Heartbeat:Connect(function(delta)
+				if flingtarget ~= nil then
+					Fling.CFrame = flingtarget.Character.Torso.CFrame
+				else
+					Fling.CFrame = game.Players.LocalPlayer.Character.Torso.CFrame
+				end
+			end)
+			FlingPart = Fling
+			wait(2)
+			cdb1 = false
+		end
+	end
+end)
+
+Fling.MouseButton1Click:Connect(function()
+	if workspace:FindFirstChild("non") then
+		local c = FindPlayer(plrsName.Text)
+		if c ~= nil then
+			flingtarget = c
+			wait(4)
+			flingtarget = nil
+		end
+	end
+end)
+local e = false
+View.MouseButton1Click:Connect(function()
+	local c = FindPlayer(plrsName.Text)
+	if e == false then
+		if c ~= nil then
+			workspace.Camera.CameraSubject = c.Character.Humanoid
+			e = true
+		end
+	else
+		workspace.Camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
+		e = false
+	end
+end)
+
+local UIS = game:GetService("UserInputService")
+function dragify(Frame)
+	dragToggle = nil
+	local dragSpeed = 0.50
+	dragInput = nil
+	dragStart = nil
+	local dragPos = nil
+	function updateInput(input)
+		local Delta = input.Position - dragStart
+		local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+		game:GetService("TweenService"):Create(Frame, TweenInfo.new(0.30), {Position = Position}):Play()
+	end
+	Frame.InputBegan:Connect(function(input)
+		if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) and UIS:GetFocusedTextBox() == nil then
+			dragToggle = true
+			dragStart = input.Position
+			startPos = Frame.Position
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragToggle = false
+				end
+			end)
+		end
+	end)
+	Frame.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			dragInput = input
+		end
+	end)
+	game:GetService("UserInputService").InputChanged:Connect(function(input)
+		if input == dragInput and dragToggle then
+			updateInput(input)
+		end
+	end)
+end
+
+dragify(M)
+--Nerdd!!!
+local ned = Name
+
+
+local sine = 0
+local change = 1.5
+local rs = game:GetService("RunService")
+
+
+
+rs.Heartbeat:Connect(function()
+	sine = sine +change
+	ned.Rotation = 0 - 2 * math.cos(sine / 24)
+	ned.Position = UDim2.new(0.2,0 - 10 * math.cos(sine / 32),0.2,0 - 8 * math.cos(sine / 45))
+end)
